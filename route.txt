@@ -1,0 +1,78 @@
+# @app.route('/appmanager/chart')
+# @admin_auth
+# def chart():
+#     import numpy as np
+#     import io
+#     import base64
+#     user=Users.query.get(session['user_id'])
+#     songs = Song.query.all()
+#     song_titles = [song.title for song in songs]
+#     ratings = [song.rated_value or 0 for song in songs]  # Replace 'or 0' with a default value if needed
+#     song_t = np.array(song_titles)
+#     ratings=np.array(ratings)
+#     plt.bar(song_t, ratings, color='orange', alpha=0.7)
+#     plt.xlabel('Song Title')
+#     plt.ylabel('Rating')
+#     plt.title('Song Ratings')
+#     plt.ylim(0, 5)
+#     img = io.BytesIO()
+#     plt.savefig(img, format='png')
+#     img.seek(0)
+#     plot_url = base64.b64encode(img.getvalue()).decode()
+#     return render_template('/admin/bar_graph.html', user=user, plot_url=plot_url)
+
+# @app.route('/appmanager/apm_track/chart')
+# def chart():
+#     import numpy as np
+#     user = Users.query.get(session['user_id'])
+#     songs = Song.query.all()
+#     song_titles = [song.title for song in songs]
+#     ratings = [song.rated_value or 0 for song in songs]
+#     song_t = np.array(song_titles)
+#     ratings = np.array(ratings)
+#     plt.bar(song_t, ratings, color='orange', alpha=0.7)
+#     plt.xlabel('Song Title')
+#     plt.ylabel('Rating')
+#     plt.title('Song Ratings')
+#     plt.ylim(0, 5)
+
+#     static_folder = os.path.abspath('static')
+#     png_filepath = os.path.join(static_folder, 'song_ratings_plot.png')
+#     # if not os.path.exists(static_folder):
+#     #     plt.savefig(png_filepath)
+#     # else:
+#     #     if os.path.exists(static_folder):
+#     #         os.remove(png_filepath)
+#     plt.savefig(png_filepath)
+#     plt.close()  # Close the matplotlib figure to release resources
+#     static_folder = os.path.abspath('static/song_ratings_plot.png')
+#     # return render_template('/admin/bar_graph.html', user=user, chart_image=png_filepath)
+
+# @app.route('/appmanager/chart', methods=['GET', 'POST'])
+# def chart():
+#     import numpy as np
+
+#     user = Users.query.get(session['user_id'])
+#     songs = Song.query.all()
+#     song_titles = [song.title for song in songs]
+#     ratings = [song.rated_value or 0 for song in songs]
+#     song_t = np.array(song_titles)
+#     ratings = np.array(ratings)
+
+#     plt.bar(song_t, ratings, color='orange', alpha=0.7)
+#     plt.xlabel('Song Title')
+#     plt.ylabel('Rating')
+#     plt.title('Song Ratings')
+#     plt.ylim(0, 5)
+
+#     static_folder = 'static'
+#     png_filepath = os.path.join(static_folder, 'song_ratings_plot.png')
+
+#     # Save the plot only if the 'static' folder exists
+#     if not os.path.exists(static_folder):
+#         os.makedirs(static_folder)
+    
+#     plt.savefig(png_filepath)
+#     plt.close()  # Close the matplotlib figure to release resources
+
+#     return render_template('/admin/chart.html', user=user, chart_image=png_filepath)

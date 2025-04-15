@@ -1,0 +1,6 @@
+user and creator separate login --
+scrollbar in all the pages
+summary to be removed
+chart to admin dashboard
+blacklist song/Album
+blacklist/whitelist creator
